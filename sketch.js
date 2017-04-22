@@ -8,6 +8,7 @@ var twistgif;
 var song1;
 var song2;
 var song3;
+var fr = 26;
 
 function preload() {
   song1 = loadSound('assets/007 Background.mp3');
@@ -24,9 +25,14 @@ function preload() {
 
 function setup() {
   createCanvas(600, 800);
+
   song1.loop();
   song2.loop();
   song3.loop();
+
+  frameRate(fr);
+
+
 }
 
 function draw() {
@@ -34,14 +40,18 @@ function draw() {
   image(framegif, 0, 0, 600, 800)
   image(back, 0, 0, 600, 800);
   image(twist, 0, 0, 600, 800);
+
   if (twistgif.playing()) {
     image(twistgif, 0, 0, 600, 800);
+    song1.setVolume(1);
   }
   if (topball.playing()) {
     image(topball, 0, 0, 600, 800);
+     song2.setVolume(1);
   }
   if (bottomball.playing()) {
     image(bottomball, 0, 0, 600, 800);
+     song3.setVolume(1);
   }
 
 
@@ -49,35 +59,41 @@ function draw() {
 
 
 function mousePressed() {
-  if (song1.isPlaying(mouseX > 200 && mouseX <= 500 && mouseY >= 200 && mouseY < 400)) {
-    song1.pause();
-  } else {
-    song1.play();
-  }
-  if (song2.isPlaying(mouseX > 200 && mouseX <= 500 && mouseY >= 0 && mouseY < 200)) {
-    song2.pause();
-  } else {
-    song2.play();
-  }
-  if (song2.isPlaying(mouseX > 200 && mouseX <= 500 && mouseY >= 400 && mouseY < 800)) {
-    song3.pause();
-  } else {
-    song3.play();
-  }
 
-  if (twistgif.playing(mouseX > 200 && mouseX <= 500 && mouseY >= 200 && mouseY < 400)) {
-    twistgif.pause();
-  } else {
-    twistgif.play();
+  if (mouseX > 200 && mouseX <= 500 && mouseY >= 250 && mouseY < 550) {
+    if (song1.isPlaying()) {
+      song1.setVolume(0, 1.0);
+    } else {
+      song1.setVolume(1, 1.0);
+    }
+    if (twistgif.playing()) {
+      twistgif.pause();
+    } else {
+      twistgif.play();
+    }
   }
-  if (topball.playing(mouseX > 200 && mouseX <= 500 && mouseY >= 0 && mouseY < 200)) {
-    topball.pause();
-  } else {
-    topball.play();
+  if (mouseX > 200 && mouseX <= 500 && mouseY >= 0 && mouseY < 250) {
+    if (song2.isPlaying()) {
+      song2.setVolume(0, 1.0);
+    } else {
+      song2.setVolume(1, 1.0);
+    }
+    if (topball.playing()) {
+      topball.pause();
+    } else {
+      topball.play();
+    }
   }
-  if (bottomball.playing(mouseX > 200 && mouseX <= 500 && mouseY >= 400 && mouseY < 800)) {
-    bottomball.pause();
-  } else {
-    bottomball.play();
+  if (mouseX > 200 && mouseX <= 500 && mouseY >= 550 && mouseY < 800) {
+    if (song3.isPlaying()) {
+      song3.setVolume(0, 1.0);
+    } else {
+      song3.setVolume(1, 1.0);
+    }
+    if (bottomball.playing()) {
+      bottomball.pause();
+    } else {
+      bottomball.play();
+    }
   }
 }
